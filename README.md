@@ -24,7 +24,7 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository**:
 bash
-git clone https://github.com/yourusername/simple-calculator.git
+git clone [https://github.com/yourusername/simple-calculator.git](https://github.com/Amir-Rastkhadiv/amir-simplecalculator)
 cd simple-calculator
 
 
