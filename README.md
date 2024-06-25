@@ -16,7 +16,7 @@ A simple, responsive calculator web application designed to mimic the style of t
 
 ## Demo
 
-![Simple Calculator Demo](demo.png)
+![](demo.png)
 
 ## Installation
 
@@ -24,7 +24,7 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository**:
 bash
-git clone [https://github.com/yourusername/simple-calculator.git](https://github.com/Amir-Rastkhadiv/amir-simplecalculator)
+git clone [(https://github.com/Amir-Rastkhadiv/amir-simplecalculator)](https://github.com/Amir-Rastkhadiv/amir-simplecalculator)
 cd simple-calculator
 
 
