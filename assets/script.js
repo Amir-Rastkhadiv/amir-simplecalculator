@@ -1,38 +1,69 @@
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-// Select the input fields and result paragraph
-    const num1 = document.getElementById('num1');
-    const num2 = document.getElementById('num2');
-    const resultParagraph = document.getElementById('result');
+let currentInput = '';
+let previousInput = '';
+let operator = '';
 
-// Define functions for each arithmetic operation
-    function add() {
-    const result = parseFloat(num1.value) + parseFloat(num2.value);
-    resultParagraph.textContent = 'Result: ' + result;
-    }
+function appendNumber(number) {
+currentInput += number;
+updateDisplay(currentInput);
+}
 
-    function subtract() {
-    const result = parseFloat(num1.value) - parseFloat(num2.value);
-    resultParagraph.textContent = 'Result: ' + result;
-    }
-  
-    function multiply() {
-    const result = parseFloat(num1.value) * parseFloat(num2.value);
-    resultParagraph.textContent = 'Result: ' + result;
-    }
-  
-    function divide() {
-      if (parseFloat(num2.value) === 0) {
-        resultParagraph.textContent = 'Result: Cannot divide by zero';
-      } else {
-        const result = parseFloat(num1.value) / parseFloat(num2.value);
-        resultParagraph.textContent = 'Result: ' + result;
-    }
-};
+function clearDisplay() {
+currentInput = '';
+previousInput = '';
+operator = '';
+updateDisplay('0');
+}
 
-// Add event listeners to the buttons
-document.getElementById('addButton').addEventListener('click', add);
-document.getElementById('subtractButton').addEventListener('click', subtract);
-document.getElementById('multiplyButton').addEventListener('click', multiply);
-document.getElementById('divideButton').addEventListener('click', divide);
-});
+function updateDisplay(value) {
+document.getElementById('num1').value = value;
+}
+
+function setOperator(op) {
+if (currentInput === '') return;
+if (previousInput !== '') {
+calculateResult();
+}
+operator = op;
+previousInput = currentInput;
+currentInput = '';
+}
+
+function calculateResult() {
+if (currentInput === '' || previousInput === '' || operator === '') return;
+
+let result;
+const prev = parseFloat(previousInput);
+const current = parseFloat(currentInput);
+
+switch (operator) {
+case '+':
+result = prev + current;
+break;
+case '-':
+result = prev - current;
+break;
+case '×':
+result = prev * current;
+break;
+case '÷':
+if (current === 0) {
+alert("Cannot divide by zero");
+clearDisplay();
+return;
+}
+result = prev / current;
+break;
+default:
+return;
+}
+
+updateDisplay(result);
+currentInput = result.toString();
+previousInput = '';
+operator = '';
+}
+
+document.getElementById('addButton').addEventListener('click', () => setOperator('+'));
+document.getElementById('subtractButton').addEventListener('click', () => setOperator('-'));
+document.getElementById('multiplyButton').addEventListener('click', () => setOperator('×'));
+document.getElementById('divideButton').addEventListener('click', () => setOperator('÷'));
